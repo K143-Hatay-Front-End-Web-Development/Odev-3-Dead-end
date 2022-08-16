@@ -1,0 +1,39 @@
+.container {
+  font-family: 'Handlee', cursive;
+  height: 100vh;
+  justify-content: space-between;
+  font-size: 32px;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 249px;
+  color: #fff;
+  cursor: pointer;
+  /* overflow: hidden;  */
+}
+
+.container h2 {
+  color: #ff0000;
+  width: 222px;
+  height: 109px;
+  font-size: 82px;
+  margin: 100px 0px 0px 0px;
+}
+
+.section-right > ul {
+  margin-top: 0px;
+}
+.section-right ul li {
+  list-style: none;
+}
+.section-right ul li span {
+  margin-left: 25px;
+}
+
+.startGame {
+  margin: 106px 158px 0px 0px;
+}
+
+.startGame > span {
+  position: absolute;
+  margin: 50px 150px;
+}

@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles.scss";
-import * as svgs from '../../assets/svgs';
 import { useRound } from '../../context/use-round';
+import * as svgs from '../../assets/svgs';
+import "./styles.scss";
 
-function Result() {
+export default function Result() {
 
    const { round } = useRound();
    console.log(round);
@@ -14,6 +14,7 @@ function Result() {
       //Başla butonuna tıklandığında context'ten gelen veriler ile oyun başa döner 
 
    };
+
    return (
       <div className="container">
          <div className="section-left">
@@ -47,5 +48,3 @@ function Result() {
       </div>
    );
 }
-
-export default Result;

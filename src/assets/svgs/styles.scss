@@ -1,0 +1,28 @@
+.thinking,
+.sad,
+.happy {
+  position: absolute;
+}
+
+.thinking {
+  top: 155px;
+  left: 785px;
+  font-size: 100px;
+  color: white;
+}
+
+.sad {
+  top: 167px;
+  left: 736px;
+}
+
+.happy {
+  top: 165px;
+  left: 770px;
+}
+
+.check-svg {
+  rect:first-of-type {
+    fill-opacity: 0%;
+  }
+}

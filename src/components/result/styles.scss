@@ -1,14 +1,19 @@
-.container {
-  font-family: 'Handlee', cursive;
-  height: 100vh;
-  justify-content: space-between;
+// .container {
+//   font-family: 'Handlee', cursive;
+//   height: 100vh;
+//   justify-content: space-between;
+//   font-size: 32px;
+//   display: flex;
+//   flex-direction: row;
+//   margin: 0px 249px;
+//   color: #fff;
+//   cursor: pointer;
+//   /* overflow: hidden;  */
+// }
+
+.container-result {
   font-size: 32px;
   display: flex;
-  flex-direction: row;
-  margin: 0px 249px;
-  color: #fff;
-  cursor: pointer;
-  /* overflow: hidden;  */
 }
 
 .container h2 {

@@ -46,33 +46,33 @@ export default function Home() {
    }
 
    return (
-      <div className='body'>
-         <div className='container'>
-            <header>
-               <div className='header'>{header}</div>
-               <div className='line'>{homeLine}</div>
-            </header>
-            <div className='main'>
-               <section className='leftSection'>
-                  <div>Puan: {totals.score}</div>
-                  <div>Çözülen Sayısı: {totals.questionsSolved}</div>
-                  <div>Yanlış Sayısı: {totals.wrongAnswers}</div>
-                  <div>Doğru Sayısı: {totals.correctAnswers}</div>
-               </section>
-               <section className='rightSection'>
-                  {operations.map((item, index) =>
-                     <Operation
-                        key={`operation-${index}`}
-                        selected={index === selectedIndex}
-                        label={item.label}
-                        onClick={() => onOperationSelect(item.type, index)}
-                     />
-                  )}
-               </section>
-            </div>
-            <div className='footerCircle' onClick={clickHandler}><span>{footerText}</span>{footerCircle}
-            </div>
+      // <div className='body'>
+      <div className='container'>
+         <header>
+            <div className='header'>{header}</div>
+            <div className='line'>{homeLine}</div>
+         </header>
+         <div className='main'>
+            <section className='leftSection'>
+               <div>Puan: {totals.score}</div>
+               <div>Çözülen Sayısı: {totals.questionsSolved}</div>
+               <div>Yanlış Sayısı: {totals.wrongAnswers}</div>
+               <div>Doğru Sayısı: {totals.correctAnswers}</div>
+            </section>
+            <section className='rightSection'>
+               {operations.map((item, index) =>
+                  <Operation
+                     key={`operation-${index}`}
+                     selected={index === selectedIndex}
+                     label={item.label}
+                     onClick={() => onOperationSelect(item.type, index)}
+                  />
+               )}
+            </section>
+         </div>
+         <div className='footerCircle' onClick={clickHandler}><span>{footerText}</span>{footerCircle}
          </div>
       </div>
+      // </div>
    );
 }

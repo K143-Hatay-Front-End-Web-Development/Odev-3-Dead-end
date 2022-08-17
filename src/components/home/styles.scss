@@ -5,10 +5,12 @@
   background: #2d2d2d;
 }
 .container {
-  position: absolute;
-  width: 1272px;
-  height: 85%;
-  margin: 108px 349px 116px 299px;
+  //   position: absolute;
+  //   width: 1272px;
+  //   height: 85%;
+  //   margin: 108px 349px 116px 299px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {

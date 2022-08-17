@@ -16,7 +16,6 @@ export default function Result() {
 
    const { result } = useResult();
 
-   console.log(result);
 
    const { line, circleIcon, falseIcon, trueIcon } = svgs;
    const { f, o, s, a, check } = result.results[1] || dummy_results.results[1];
@@ -28,7 +27,7 @@ export default function Result() {
    };
 
    return (
-      <div className="container">
+      <div className="container-result">
          <div className="section-left">
             <h2>Sonuc</h2>
             {line}

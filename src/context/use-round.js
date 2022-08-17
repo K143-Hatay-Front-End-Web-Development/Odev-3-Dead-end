@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 export const RoundContext = createContext();
 export const useRound = () => useContext(RoundContext);
 
-const initialState = { no: 1, score: 0, questions: [] };
+const initialState = { no: 0, score: 0, questions: [] };
 
 const Provider = (props) => {
    const [round, setRound] = useState(initialState);

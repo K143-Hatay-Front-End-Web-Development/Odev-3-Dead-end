@@ -4,7 +4,7 @@ import { useResult } from '../../context/use-result';
 import * as svgs from '../../assets/svgs';
 import "./styles.scss";
 
-const result_trial = {
+const dummy_results = {
    score: 120, correctAnswers: 7, wrongAnswers: 3, results: [
       { f: 2, o: 'x', s: 3, a: 6, check: true },
       { f: 17, o: '-', s: 53, a: 15, check: true },
@@ -14,14 +14,12 @@ const result_trial = {
 
 export default function Result() {
 
-   const { result, setResult } = useResult();
+   const { result } = useResult();
 
    console.log(result);
 
    const { line, circleIcon, falseIcon, trueIcon } = svgs;
-   const { f, o, s, a, check } = result.results[1] || result_trial.results[1];
-
-
+   const { f, o, s, a, check } = result.results[1] || dummy_results.results[1];
 
    const startGame = () => {
 

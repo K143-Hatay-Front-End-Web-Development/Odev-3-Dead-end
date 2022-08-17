@@ -9,7 +9,7 @@ const Provider = (props) => {
    const [totals, setTotals] = useState(initialState);
 
    return (
-      <TotalsContext.Provider value={{ totals }}>
+      <TotalsContext.Provider value={{ totals, setTotals }}>
          {props.children}
       </TotalsContext.Provider>
    );

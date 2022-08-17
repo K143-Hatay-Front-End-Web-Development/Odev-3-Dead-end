@@ -41,7 +41,7 @@ function createOperands(type) {
    return { first, second };
 };
 
-export function createQuestion(type) {
+function createQuestion(type) {
    let answer; let decoy1; let decoy2; let points; let operation;
 
    let { first, second } = createOperands(type);
@@ -82,6 +82,6 @@ export function createQuestion(type) {
    return { first, operation, second, points, choices: [answer, decoy1, decoy2] };
 };
 
-// const createQuestions = type => new Array(10).fill(null).map(() => createQuestion(type));
+export const createQuestions = type => new Array(10).fill(null).map(() => createQuestion(type));
 
-// const checkAnswer = (q, a) => q.choices[0] === a;
+export const checkAnswer = (q, a) => q.choices[0] === a;

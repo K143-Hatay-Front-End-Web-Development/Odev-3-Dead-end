@@ -9,7 +9,7 @@ const Provider = (props) => {
    const [round, setRound] = useState(initialState);
 
    return (
-      <RoundContext.Provider value={{ round }}>
+      <RoundContext.Provider value={{ round, setRound }}>
          {props.children}
       </RoundContext.Provider>
    );

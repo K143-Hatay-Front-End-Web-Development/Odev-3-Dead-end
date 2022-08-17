@@ -4,26 +4,47 @@ const { ADDITION, SUBSTRACTION, MULTIPLICATION, DIVISION } = STRINGS;
 
 const randomIntegerBetween = (min, max) => Math.floor(min + (max - min + 1) * Math.random());
 
-function randomNumber(type) {
-   const lowerBound = [MULTIPLICATION, DIVISION].includes(type) ? 2 : 10;
-   const upperBound = [MULTIPLICATION, DIVISION].includes(type) ? 9 : type === ADDITION ? 49 : 99;
+const findDivisors = number => {
+   let divisors = [];
 
-   let first = randomIntegerBetween(lowerBound, upperBound);
-   let second = randomIntegerBetween(lowerBound, upperBound);
+   for (let i = 2; i < 10; i++) {
+      if (!(number % i)) divisors.push(i);
+   }
 
-   if ([SUBSTRACTION, DIVISION, MULTIPLICATION].includes(type)) {
+   return divisors;
+};
+
+function createOperands(type) {
+   let first; let second; let divisors;
+
+   const lowerBound = type !== MULTIPLICATION ? 10 : 2;
+   const upperBound = [SUBSTRACTION, DIVISION].includes(type) ? 99 : type === ADDITION ? 49 : 9;
+
+   first = randomIntegerBetween(lowerBound, upperBound);
+   second = randomIntegerBetween(lowerBound, upperBound);
+
+   if ([SUBSTRACTION, MULTIPLICATION].includes(type)) {
       const max = Math.max(first, second);
       const min = Math.min(first, second);
       first = max; second = min;
    }
 
+   if (type === DIVISION) {
+      while (true) {
+         first = randomIntegerBetween(lowerBound, upperBound);
+         divisors = findDivisors(first);
+         if (divisors.length > 0) break;
+      }
+      second = Math.max(...divisors);
+   }
+
    return { first, second };
 };
 
-export function createQuestion(type) {
+function createQuestion(type) {
    let answer; let decoy1; let decoy2; let points; let operation;
 
-   let { first, second } = randomNumber(type);
+   let { first, second } = createOperands(type);
 
    switch (type) {
       case ADDITION:
@@ -48,12 +69,11 @@ export function createQuestion(type) {
          operation = 'x';
          break;
       case DIVISION:
-         answer = first;
-         first = first * second;
-         decoy1 = answer - 1;
-         decoy2 = answer + 1;
-         points = 5;
+         answer = first / second;
+         decoy1 = answer + 1;
+         decoy2 = answer - 1;
          operation = '/';
+         points = 5;
          break;
       default:
          break;
@@ -62,6 +82,6 @@ export function createQuestion(type) {
    return { first, operation, second, points, choices: [answer, decoy1, decoy2] };
 };
 
-// const checkAnswer = (q, a) => q.choices[0] === a;
+export const createQuestions = type => new Array(10).fill(null).map(() => createQuestion(type));
 
-// const createQuestions = type => new Array(10).fill(null).map(() => createQuestion(type));
+export const checkAnswer = (q, a) => q.choices[0] === a;

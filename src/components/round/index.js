@@ -30,7 +30,7 @@ export default function Round() {
    const { setResult } = useResult();
    const { first, operation, second, choices } = round.questions[3] || question;
    const navigate = useNavigate();
-   const { totals, setTotals } = useTotals();
+   const { setTotals } = useTotals();
 
    useEffect(() => {
       setTotals(currentTotals => {
@@ -42,7 +42,7 @@ export default function Round() {
             questionsSolved: questionsSolved + 10
          };
       });
-   }, [round]);
+   }, [round, setTotals]);
 
 
    function clickHandler(isCorrect, index) {

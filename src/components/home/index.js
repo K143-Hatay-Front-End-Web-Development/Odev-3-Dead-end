@@ -10,7 +10,7 @@ import Operation from '../operation';
 
 const { ADDITION, SUBSTRACTION, MULTIPLICATION, DIVISION } = STRINGS;
 
-const { header, homeLine, trueIcon, footerText, footerCircle } = svgs;
+const { header, homeLine, footerText, footerCircle } = svgs;
 
 const operations = [
    { type: ADDITION, label: 'Toplama' },

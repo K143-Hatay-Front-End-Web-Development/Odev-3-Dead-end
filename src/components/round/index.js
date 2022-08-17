@@ -55,7 +55,9 @@ export default function Round() {
                questionsSolved: current.questionsSolved + 10
             };
          });
+
          console.log('currentQuestion', currentQuestion);
+
          setTimeout(() => {
             if (currentQuestion < 10) {
                console.log('hi');

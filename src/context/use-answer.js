@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import * as STRINGS from '../assets/strings';
+import { STRINGS } from '../assets/strings';
 
 export const AnswerContext = createContext();
 export const useAnswer = () => useContext(AnswerContext);

@@ -26,18 +26,16 @@ export default function Home() {
    const navigate = useNavigate();
    const [selectedIndex, setSelectedIndex] = useState(null);
 
-
-   console.log(totals.questionsSolved);
-
    function clickHandler() {
-      const questions = createQuestions(operation);
+      if (operation) {
+         const questions = createQuestions(operation);
 
-      setRound(currentRound => {
-         const { no } = currentRound;
-         return { no: no + 1, score: 0, questions: questions };
-      });
+         setRound(({ no }) => {
+            return { no: no + 1, score: 0, questions: questions };
+         });
 
-      navigate('/round');
+         navigate('/round');
+      }
    }
 
    function onOperationSelect(type, index) {

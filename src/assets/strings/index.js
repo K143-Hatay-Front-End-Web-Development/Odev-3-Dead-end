@@ -3,6 +3,7 @@ export const STRINGS = {
    SUBSTRACTION: 'substraction',
    MULTIPLICATION: 'multiplication',
    DIVISION: 'division',
+   LAYOUT: 'layout',
    SCHEMA: 'schema',
    CORRECT: 'correct',
    INCORRECT: 'incorrect',

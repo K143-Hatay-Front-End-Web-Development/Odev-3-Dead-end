@@ -4,7 +4,6 @@
   position: relative;
   width: 1920px;
   height: 1080px;
-  background-color: map-get($colors, bg);
 
   svg * {
     fill: map-get($colors, svg);

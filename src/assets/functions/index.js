@@ -30,21 +30,21 @@ export function createQuestion(type) {
          answer = first + second;
          decoy1 = answer >= 90 ? answer - 10 : answer + 10;
          decoy2 = answer + 1;
-         points = 1;
+         points = 2;
          operation = '+';
          break;
       case SUBSTRACTION:
          answer = first - second;
          decoy1 = answer + 10;
          decoy2 = answer + 1;
-         points = 2;
+         points = 3;
          operation = '-';
          break;
       case MULTIPLICATION:
          answer = first * second;
          decoy1 = (first - 1) * second;
          decoy2 = first * (second + 1);
-         points = 3;
+         points = 4;
          operation = 'x';
          break;
       case DIVISION:
@@ -52,7 +52,7 @@ export function createQuestion(type) {
          first = first * second;
          decoy1 = answer - 1;
          decoy2 = answer + 1;
-         points = 4;
+         points = 5;
          operation = '/';
          break;
       default:

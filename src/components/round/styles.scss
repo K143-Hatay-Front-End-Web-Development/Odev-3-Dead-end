@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.schema {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background-color: map-get($colors, bg);
+
+  svg * {
+    fill: map-get($colors, svg);
+  }
+
+  p {
+    position: absolute;
+    margin: 0;
+  }
+
+  .question {
+    top: 320px;
+    left: 228px;
+    font-size: 128px;
+  }
+}
+
+.correct {
+  background-color: map-get($colors, correct);
+}
+
+.incorrect {
+  background-color: map-get($colors, incorrect);
+}
+
+.check {
+  position: absolute;
+  top: 0;
+
+  svg * {
+    fill: yellow;
+  }
+}

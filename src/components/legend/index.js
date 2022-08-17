@@ -6,7 +6,11 @@ const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { tit
 export default function Legend() {
    return (
       <div className='legend'>
-         {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
+         {legend.map((item, index) => (
+            <p className='legend' key={`legend-${index}`}>
+               {item.title}: {item.value}
+            </p>
+         ))}
       </div>
    );
 }

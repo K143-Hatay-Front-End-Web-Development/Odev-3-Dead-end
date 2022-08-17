@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import { STRINGS } from '../../assets/strings';
 import Legend from '../legend';
 import Choices from '../choices';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
 
-const CORRECT = 'correct';
-const INCORRECT = 'incorrect';
-const SCHEMA = 'schema';
+const { CORRECT, INCORRECT, SCHEMA } = STRINGS;
 const schema = { success: `${SCHEMA} ${CORRECT}`, fail: `${SCHEMA} ${INCORRECT}`, default: SCHEMA };
 const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
 const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [56, 49, 64] };

@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 export const RoundContext = createContext();
 export const useRound = () => useContext(RoundContext);
 
-const initialState = { no: 1, score: 0, correctAnswers: 0, wrongAnswers: 0, questions: [] };
+const initialState = { no: 1, score: 0, questions: [] };
 
 const Provider = (props) => {
    const [round, setRound] = useState(initialState);

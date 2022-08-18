@@ -25,7 +25,7 @@ const dummy_results = {
 export default function Round() {
    const [isSelected, setIsSelected] = useState(null);
    const { round } = useRound();
-   const { questions } = round;
+   const { score, no, questions } = round;
    const [currentQuestion, setCurrentQuestion] = useState(1);
    const [question, setQuestion] = useState(questions[currentQuestion - 1]);
    // const { setResult } = useResult();
@@ -71,7 +71,7 @@ export default function Round() {
       <div className='schema'>
          {svgs.schema}
          {set(face)}
-         <Legend />
+         <Legend score={score} no={no} currentQuestion={currentQuestion} />
          <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
          <p className='question'>{`${first} ${operation} ${second}`}</p>
       </div>

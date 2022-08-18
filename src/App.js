@@ -7,7 +7,6 @@ import Layout from './components/layout';
 import HomePage from './pages/home';
 import RoundPage from './pages/round';
 import ResultPage from './pages/result';
-import './App.scss';
 
 export default function App() {
    return (

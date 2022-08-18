@@ -23,16 +23,19 @@ const dummy_results = {
 };
 
 export default function Round() {
-   const [isSelected, setIsSelected] = useState(null);
-   const { round } = useRound();
-   const { score, no, questions } = round;
-   const [currentQuestion, setCurrentQuestion] = useState(1);
-   const [question, setQuestion] = useState(questions[currentQuestion - 1]);
-   // const { setResult } = useResult();
-   const { setTotals } = useTotals();
    const { answer, setAnswer, set } = useAnswer();
-   const { first, operation, second, choices } = question || initialQuestion;
+   const { setTotals } = useTotals();
+   const { round } = useRound();
+   // const { setResult } = useResult();
    const navigate = useNavigate();
+
+   const { score, no, questions } = round;
+
+   const [isSelected, setIsSelected] = useState(null);
+   const [questionCounter, setQuestionCounter] = useState(1);
+   const [question, setQuestion] = useState(questions[questionCounter - 1]);
+
+   const { first, operation, second, choices } = question || initialQuestion;
 
    function onChoiceSelect(isCorrect, index) {
       if (!answer) {
@@ -41,6 +44,8 @@ export default function Round() {
          // setResult(dummy_results);
       }
    }
+
+   // console.log('comp', questionCounter, questions[questionCounter], question);
 
    useEffect(() => {
       if (answer) {
@@ -52,28 +57,32 @@ export default function Round() {
                questionsSolved: current.questionsSolved + 10
             };
          });
-
+         // console.log('effect', questionCounter, questions[questionCounter], question);
          setTimeout(() => {
             setAnswer(null);
             setIsSelected(null);
 
-            if (currentQuestion < 10) {
-               setCurrentQuestion(x => x + 1);
-               setQuestion(questions[currentQuestion - 1]);
+            if (questionCounter < 10) {
+               setQuestionCounter(x => x + 1);
+               setQuestion(questions[questionCounter]);
             } else {
                navigate('/result');
             }
          }, 2000);
       }
-   }, [round, setTotals, answer, setAnswer, questions, currentQuestion, setCurrentQuestion, navigate]);
+   }, [round, setTotals, answer, setAnswer,/* question,*/ questions, questionCounter, setQuestionCounter, navigate]);
+   // delete question
 
    return (
-      <div className='schema'>
-         {svgs.schema}
-         {set(face)}
-         <Legend score={score} no={no} currentQuestion={currentQuestion} />
-         <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
-         <p className='question'>{`${first} ${operation} ${second}`}</p>
-      </div>
+      <>
+         <div className='schema'>
+            {svgs.schema}
+            {set(face)}
+            <Legend score={score} no={no} questionCounter={questionCounter} />
+            <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
+            <p className='question'>{`${first} ${operation} ${second}`}</p>
+         </div>
+         {/* {svgs.check} */}
+      </>
    );
 }

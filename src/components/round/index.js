@@ -10,8 +10,7 @@ import { useAnswer } from '../../context/use-answer';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
 
-const { CORRECT, INCORRECT, SCHEMA } = STRINGS;
-const schema = { success: `${SCHEMA} ${CORRECT}`, fail: `${SCHEMA} ${INCORRECT}`, default: SCHEMA };
+const { CORRECT, INCORRECT } = STRINGS;
 const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
 const initialQuestion = { first: 7, operation: 'x', second: 8, points: 3, choices: [56, 49, 64] };
 
@@ -35,9 +34,7 @@ export default function Round() {
    const { first, operation, second, choices } = question || initialQuestion;
    const navigate = useNavigate();
 
-   console.log('answer', answer);
-
-   function clickHandler(isCorrect, index) {
+   function onChoiceSelect(isCorrect, index) {
       if (!answer) {
          setAnswer(isCorrect ? CORRECT : INCORRECT);
          setIsSelected(index);
@@ -56,14 +53,13 @@ export default function Round() {
             };
          });
 
-         console.log('currentQuestion', currentQuestion);
-
          setTimeout(() => {
+            setAnswer(null);
+            setIsSelected(null);
+
             if (currentQuestion < 10) {
-               console.log('hi');
-               setQuestion(questions[currentQuestion - 1]);
-               setAnswer(null);
                setCurrentQuestion(x => x + 1);
+               setQuestion(questions[currentQuestion - 1]);
             } else {
                navigate('/result');
             }
@@ -72,11 +68,11 @@ export default function Round() {
    }, [round, setTotals, answer, setAnswer, questions, currentQuestion, setCurrentQuestion, navigate]);
 
    return (
-      <div className={set(schema)}>
+      <div className='schema'>
          {svgs.schema}
          {set(face)}
          <Legend />
-         <Choices choices={choices} isSelected={isSelected} onClick={clickHandler} />
+         <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
          <p className='question'>{`${first} ${operation} ${second}`}</p>
       </div>
    );

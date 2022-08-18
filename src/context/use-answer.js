@@ -11,8 +11,10 @@ const Provider = (props) => {
 
    const set = values => answer === CORRECT ? values.success : answer === INCORRECT ? values.fail : values.default;
 
+   const check = (index) => index === 0;
+
    return (
-      <AnswerContext.Provider value={{ answer, setAnswer, set }}>
+      <AnswerContext.Provider value={{ answer, setAnswer, set, check }}>
          {props.children}
       </AnswerContext.Provider>
    );

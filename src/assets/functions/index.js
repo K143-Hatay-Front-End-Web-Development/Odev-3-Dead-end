@@ -84,4 +84,11 @@ function createQuestion(type) {
 
 export const createQuestions = type => new Array(10).fill(null).map(() => createQuestion(type));
 
-export const checkAnswer = (q, a) => q.choices[0] === a;
+// create random indexes to switch the position of the correct answer
+const modulo = (number, n) => ((number % n) + n) % n;   // takes modulo n of a number
+
+export function shuffle() {
+   const randomIndex = Math.floor(3 * Math.random());      // 0, 1, or 2
+   const iterator = Math.random() >= 0.5 ? 1 : -1;         // -1 or 1
+   return [randomIndex, modulo(randomIndex + iterator, 3), modulo(randomIndex + 2 * iterator, 3)];   // a permutation of the set {0, 1, 2}
+}

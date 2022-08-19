@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { createQuestions } from '../../assets/functions';
 import { useNavigate } from 'react-router-dom';
 import { STRINGS } from '../../assets/strings';
-import { useRound } from '../../context/use-round';
-import { useTotals } from '../../context/use-totals';
+import { useGame } from '../../context/use-game';
+import Operation from '../operation';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
-import Operation from '../operation';
 
 const { ADDITION, SUBSTRACTION, MULTIPLICATION, DIVISION } = STRINGS;
 
-const { header, homeLine, footerText, footerCircle } = svgs;
+const { homeLine, footerCircle } = svgs;
 
 const operations = [
    { type: ADDITION, label: 'Toplama' },
@@ -21,23 +20,22 @@ const operations = [
 
 export default function Home() {
    const [operation, setOperation] = useState(null);
-   const { totals } = useTotals();
-   const { setRound } = useRound();
+   const { totals, setRound } = useGame();
    const navigate = useNavigate();
    const [selectedIndex, setSelectedIndex] = useState(null);
 
-
-   console.log(totals.questionsSolved);
+   const { score, correctAnswers, wrongAnswers, questionsSolved } = totals;
 
    function clickHandler() {
-      const questions = createQuestions(operation);
+      if (operation) {
+         const questions = createQuestions(operation);
 
-      setRound(currentRound => {
-         const { no } = currentRound;
-         return { no: no + 1, score: 0, questions: questions };
-      });
+         setRound(({ no }) => {
+            return { no: no + 1, score: 0, questions: questions };
+         });
 
-      navigate('/round');
+         navigate('/round');
+      }
    }
 
    function onOperationSelect(type, index) {
@@ -46,20 +44,17 @@ export default function Home() {
    }
 
    return (
-      // <div className='body'>
       <div className='container'>
-         <header>
-            <div className='header'>{header}</div>
-            <div className='line'>{homeLine}</div>
-         </header>
+         <div className='header'>Matematik Oyunu</div>
+         <div className='line'>{homeLine}</div>
          <div className='main'>
-            <section className='leftSection'>
-               <div>Puan: {totals.score}</div>
-               <div>Çözülen Sayısı: {totals.questionsSolved}</div>
-               <div>Yanlış Sayısı: {totals.wrongAnswers}</div>
-               <div>Doğru Sayısı: {totals.correctAnswers}</div>
+            <section>
+               <div>Puan: {score}</div>
+               <div><p>Çözülen Sayısı</p><p>: {questionsSolved}</p></div>
+               <div>Yanlıs Cevap: {wrongAnswers}</div>
+               <div><p>Dogru Cevap</p><p>: {correctAnswers}</p></div>
             </section>
-            <section className='rightSection'>
+            <section>
                {operations.map((item, index) =>
                   <Operation
                      key={`operation-${index}`}
@@ -70,9 +65,10 @@ export default function Home() {
                )}
             </section>
          </div>
-         <div className='footerCircle' onClick={clickHandler}><span>{footerText}</span>{footerCircle}
+         <div className='start' onClick={clickHandler}>
+            {footerCircle}
+            <p>Basla</p>
          </div>
       </div>
-      // </div>
    );
 }

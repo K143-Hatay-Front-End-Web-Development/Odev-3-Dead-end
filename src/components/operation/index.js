@@ -7,8 +7,9 @@ export default function Operation(props) {
    const { selected, label, onClick } = props;
 
    return (
-      <div onClick={onClick}>
-         {label}{selected && trueIcon}
+      <div className='operation' onClick={onClick}>
+         <div>{label}</div>
+         <div>{selected && trueIcon}</div>
       </div>
    );
 }

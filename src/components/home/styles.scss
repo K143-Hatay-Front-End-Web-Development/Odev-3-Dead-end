@@ -1,61 +1,86 @@
-.body {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: #2d2d2d;
-}
 .container {
-  //   position: absolute;
-  //   width: 1272px;
-  //   height: 85%;
-  //   margin: 108px 349px 116px 299px;
   display: flex;
   flex-direction: column;
-}
+  align-items: center;
+  position: relative;
+  width: 1920px;
+  height: 100vh;
+  transform: scale(0.6);
 
-.header {
-  display: flex;
-  justify-content: center;
-}
+  .header {
+    font-size: 82px;
+    color: #ff0000;
+  }
 
-.line {
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-  margin-bottom: 93px;
-}
+  .line {
+    margin-top: 10px;
+    margin-bottom: 76px;
+  }
 
-.main {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: 'Handlee';
-  font-style: normal;
+  .main {
+    display: flex;
+    justify-content: space-between;
+    width: 1348px;
+    font-size: 64px;
+    line-height: 108px;
 
-  font-size: 54px;
-  line-height: 85px;
-  color: #ffffff;
-}
+    section:nth-child(1) {
+      p {
+        margin: 0;
+      }
 
-.leftSection {
-  display: block;
-  position: absolute;
-}
-.rightSection {
-  display: block;
-  position: absolute;
-  margin-left: 1000px;
-  cursor: pointer;
-}
+      div:nth-child(2),
+      div:nth-child(4) {
+        display: flex;
+      }
 
-.footerCircle {
-  display: flex;
-  justify-content: center;
-  margin: 387px 387px 0px 387px;
-}
-.footerCircle > span {
-  position: absolute;
-  justify-content: center;
-  margin: 40px;
-  cursor: pointer;
+      div:nth-child(2) {
+        p:nth-child(1) {
+          word-spacing: 16px;
+        }
+      }
+
+      div:nth-child(4) {
+        p:nth-child(1) {
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    section:nth-child(2) {
+      .operation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+
+        div {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        div:nth-child(1) {
+          width: 230px;
+          cursor: pointer;
+        }
+
+        div:nth-child(2) {
+          width: 55px;
+        }
+      }
+    }
+  }
+
+  .start {
+    position: relative;
+    margin: 71px 0px 0px -24px;
+    cursor: pointer;
+
+    p {
+      position: absolute;
+      top: 30px;
+      left: 155px;
+      font-size: 64px;
+    }
+  }
 }

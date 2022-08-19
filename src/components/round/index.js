@@ -1,81 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import { STRINGS } from '../../assets/strings';
+import { useNavigate } from 'react-router-dom';
+import { useGame } from '../../context/use-game';
 import Legend from '../legend';
 import Choices from '../choices';
-import { useNavigate } from 'react-router-dom';
-import { useRound } from '../../context/use-round';
-// import { useResult } from '../../context/use-result';
-import { useTotals } from '../../context/use-totals';
-import { useAnswer } from '../../context/use-answer';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
 
-const { CORRECT, INCORRECT, SCHEMA } = STRINGS;
-const schema = { success: `${SCHEMA} ${CORRECT}`, fail: `${SCHEMA} ${INCORRECT}`, default: SCHEMA };
+const { CORRECT, INCORRECT } = STRINGS;
 const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
-const initialQuestion = { first: 7, operation: 'x', second: 8, points: 3, choices: [56, 49, 64] };
-
-const dummy_results = {
-   score: 120, correctAnswers: 7, wrongAnswers: 3, results: [
-      { f: 2, o: 'x', s: 3, a: 6, check: true },
-      { f: 7, o: '-', s: 13, a: 5, check: false },
-      { f: 11, o: '/', s: 33, a: 3, check: true },
-   ]
-};
 
 export default function Round() {
-   const [isSelected, setIsSelected] = useState(null);
-   const { round } = useRound();
-   const { questions } = round;
-   const [currentQuestion, setCurrentQuestion] = useState(1);
-   const [question, setQuestion] = useState(questions[currentQuestion - 1]);
-   // const { setResult } = useResult();
-   const { setTotals } = useTotals();
-   const { answer, setAnswer, set } = useAnswer();
-   const { first, operation, second, choices } = question || initialQuestion;
+   const { answer, setAnswer, set, setTotals, round, setRound, setResult } = useGame();
    const navigate = useNavigate();
 
-   console.log('answer', answer);
+   const { score, no, questions } = round;
 
-   function clickHandler(isCorrect, index) {
+   const [isSelected, setIsSelected] = useState(null);
+   const [questionCounter, setQuestionCounter] = useState(1);
+   const [question, setQuestion] = useState(questions[questionCounter - 1]);
+
+   const { first, operation, second, points, choices } = question;
+
+   function onChoiceSelect(isCorrect, choice, index) {
       if (!answer) {
          setAnswer(isCorrect ? CORRECT : INCORRECT);
          setIsSelected(index);
-         // setResult(dummy_results);
+         setRound(previous => {
+            const { score, ...rest } = previous;
+            const newScore = isCorrect ? score + points : score;
+            return { score: newScore, ...rest };
+         });
+         setTotals(previous => {
+            return {
+               score: isCorrect ? previous.score + points : previous.score,
+               correctAnswers: isCorrect ? previous.correctAnswers + 1 : previous.correctAnswers + 0,
+               wrongAnswers: isCorrect ? previous.wrongAnswers + 0 : previous.wrongAnswers + 1,
+               questionsSolved: previous.questionsSolved + 1
+            };
+         });
+         setResult(previous => {
+            return {
+               score: previous.score,
+               correctAnswers: isCorrect ? previous.correctAnswers + 1 : previous.correctAnswers + 0,
+               wrongAnswers: isCorrect ? previous.wrongAnswers + 0 : previous.wrongAnswers + 1,
+               results: [...previous.results, { first, operation, second, choice, isCorrect }]
+            };
+         });
       }
    }
 
    useEffect(() => {
       if (answer) {
-         setTotals(current => {
-            return {
-               score: current.score + dummy_results.score,
-               correctAnswers: current.correctAnswers + dummy_results.correctAnswers,
-               wrongAnswers: current.wrongAnswers + dummy_results.wrongAnswers,
-               questionsSolved: current.questionsSolved + 10
-            };
-         });
-         console.log('currentQuestion', currentQuestion);
          setTimeout(() => {
-            if (currentQuestion < 10) {
-               console.log('hi');
-               setQuestion(questions[currentQuestion - 1]);
-               setAnswer(null);
-               setCurrentQuestion(x => x + 1);
+            setAnswer(null);
+            setIsSelected(null);
+
+            if (questionCounter < 10) {
+               setQuestionCounter(x => x + 1);
+               setQuestion(questions[questionCounter]);
             } else {
+               setResult(previous => {
+                  return {
+                     score,
+                     correctAnswers: previous.correctAnswers,
+                     wrongAnswers: previous.wrongAnswers,
+                     results: previous.results
+                  };
+               });
                navigate('/result');
             }
-         }, 2000);
+         }, 1000);
       }
-   }, [round, setTotals, answer, setAnswer, questions, currentQuestion, setCurrentQuestion, navigate]);
+   }, [round, score, setResult, answer, setAnswer, questions, questionCounter, setQuestionCounter, navigate]);
 
    return (
-      <div className={set(schema)}>
+      <div className='schema'>
          {svgs.schema}
          {set(face)}
-         <Legend />
-         <Choices choices={choices} isSelected={isSelected} onClick={clickHandler} />
-         <p className='question'>{`${first} ${operation} ${second}`}</p>
+         <Legend score={score} no={no} questionCounter={questionCounter} />
+         <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
+         <p className='question' style={{ fontSize: ['+', '-'].includes(operation) ? '110px' : '128px' }}>
+            {operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}
+         </p>
       </div>
    );
 }

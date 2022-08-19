@@ -2,6 +2,8 @@
 
 A **React** app for kids to practice **arithmetic operations**
 
+[Play the maths game](https://maths-game-ecru.vercel.app/)
+
 ## Authors
 
 [Erdem Ceylan](https://github.com/erdemxceylan)

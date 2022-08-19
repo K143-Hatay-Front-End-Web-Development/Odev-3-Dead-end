@@ -20,19 +20,3 @@
   top: 165px;
   left: 770px;
 }
-
-.check-svg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  margin: auto;
-
-  path {
-    fill: yellow;
-  }
-
-  rect:first-of-type {
-    fill-opacity: 0%;
-  }
-}

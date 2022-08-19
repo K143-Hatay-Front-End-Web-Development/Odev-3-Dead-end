@@ -3,9 +3,9 @@ import { createQuestions } from '../../assets/functions';
 import { useNavigate } from 'react-router-dom';
 import { STRINGS } from '../../assets/strings';
 import { useGame } from '../../context/use-game';
+import Operation from '../operation';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
-import Operation from '../operation';
 
 const { ADDITION, SUBSTRACTION, MULTIPLICATION, DIVISION } = STRINGS;
 

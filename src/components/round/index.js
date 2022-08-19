@@ -88,7 +88,9 @@ export default function Round() {
             {set(face)}
             <Legend score={score} no={no} questionCounter={questionCounter} />
             <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
-            <p className='question'>{operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}</p>
+            <p className='question'>
+               {operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}
+            </p>
          </div>
          {/* {svgs.check} */}
       </>

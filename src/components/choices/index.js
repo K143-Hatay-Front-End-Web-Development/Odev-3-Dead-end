@@ -23,7 +23,7 @@ export default function Choices(props) {
                   index={indexes[index]}
                   selected={isSelected !== null ? isSelected === index : null}
                   correct={isCorrect}
-                  onClick={() => onClick(isCorrect, index)}
+                  onClick={() => onClick(isCorrect, choice, index)}
                />
             );
          }

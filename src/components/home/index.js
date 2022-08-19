@@ -3,7 +3,7 @@ import { createQuestions } from '../../assets/functions';
 import { useNavigate } from 'react-router-dom';
 import { STRINGS } from '../../assets/strings';
 import { useRound } from '../../context/use-round';
-// import { useTotals } from '../../context/use-totals';
+import { useTotals } from '../../context/use-totals';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
 import Operation from '../operation';
@@ -21,10 +21,12 @@ const operations = [
 
 export default function Home() {
    const [operation, setOperation] = useState(null);
-   // const { totals } = useTotals();
+   const { totals } = useTotals();
    const { setRound } = useRound();
    const navigate = useNavigate();
    const [selectedIndex, setSelectedIndex] = useState(null);
+
+   const { score, correctAnswers, wrongAnswers, questionsSolved } = totals;
 
    function clickHandler() {
       if (operation) {
@@ -50,10 +52,10 @@ export default function Home() {
             <div className='line'>{homeLine}</div>
             <div className='main'>
                <section>
-                  <div>Puan: 129</div>
-                  <div><p>Çözülen Sayısı</p><p>: 50</p></div>
-                  <div>Yanlış Cevap: 23</div>
-                  <div><p>Doğru Cevap</p><p>: 32</p></div>
+                  <div>Puan: {score}</div>
+                  <div><p>Çözülen Sayısı</p><p>: {questionsSolved}</p></div>
+                  <div>Yanlış Cevap: {wrongAnswers}</div>
+                  <div><p>Doğru Cevap</p><p>: {correctAnswers}</p></div>
                </section>
                <section>
                   {operations.map((item, index) =>
@@ -71,7 +73,7 @@ export default function Home() {
                <p>Başla</p>
             </div>
          </div>
-         {svgs.homePage}
+         {/* {svgs.homePage} */}
       </>
    );
 }

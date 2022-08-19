@@ -88,7 +88,7 @@ export const createQuestions = type => new Array(10).fill(null).map(() => create
 const modulo = (number, n) => ((number % n) + n) % n;   // takes modulo n of a number
 
 export function shuffle() {
-   const randomIndex = Math.floor(3 * Math.random());      // 0, 1, or 2
-   const iterator = Math.random() >= 0.5 ? 1 : -1;         // -1 or 1
+   const randomIndex = randomIntegerBetween(0, 2);   // 0, 1, or 2
+   const iterator = Math.random() >= 0.5 ? 1 : -1;   // -1 or 1
    return [randomIndex, modulo(randomIndex + iterator, 3), modulo(randomIndex + 2 * iterator, 3)];   // a permutation of the set {0, 1, 2}
 }

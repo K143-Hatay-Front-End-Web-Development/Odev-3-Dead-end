@@ -10,8 +10,6 @@
   .header {
     font-size: 82px;
     color: #ff0000;
-    margin-top: 107px;
-    margin-left: 4px;
   }
 
   .line {
@@ -50,8 +48,26 @@
     }
 
     section:nth-child(2) {
-      margin-right: 76px;
-      text-align: right;
+      .operation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+
+        div {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        div:nth-child(1) {
+          width: 230px;
+          cursor: pointer;
+        }
+
+        div:nth-child(2) {
+          width: 55px;
+        }
+      }
     }
   }
 
@@ -62,7 +78,7 @@
 
     p {
       position: absolute;
-      top: 18px;
+      top: 30px;
       left: 155px;
       font-size: 64px;
     }

@@ -88,7 +88,7 @@ export default function Round() {
             {set(face)}
             <Legend score={score} no={no} questionCounter={questionCounter} />
             <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
-            <p className='question'>
+            <p className='question' style={{ fontSize: ['+', '-'].includes(operation) ? '110px' : '128px' }}>
                {operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}
             </p>
          </div>

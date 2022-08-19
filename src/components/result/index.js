@@ -25,12 +25,12 @@ export default function Result() {
                <h2>Sonuç</h2>
                <div className='result-line'>{line1}</div>
                <div className='scores'>
-                  <div>Puan:{score}</div>
-                  <div>Doğru Cevap:{correctAnswers}</div>
-                  <div>Yanlış Cevap:{wrongAnswers}</div>
+                  <div>Puan: {score}</div>
+                  <div>Dogru Cevap: {correctAnswers}</div>
+                  <div>Yanlıs Cevap: {wrongAnswers}</div>
                </div>
                <div className='svg-button' onClick={clickHandler} >
-                  <span>Başa Dön</span>
+                  <span>Basa Dön</span>
                   {circleIcon}
                </div>
             </div>

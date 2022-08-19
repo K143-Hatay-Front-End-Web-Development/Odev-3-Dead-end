@@ -35,9 +35,14 @@
     position: relative;
     padding-top: 64px;
 
+    svg,
+    span {
+      cursor: pointer;
+    }
+
     span {
       position: absolute;
-      top: 85px;
+      top: 92px;
       left: 98px;
     }
   }

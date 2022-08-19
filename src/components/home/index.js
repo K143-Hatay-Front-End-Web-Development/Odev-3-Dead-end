@@ -46,34 +46,31 @@ export default function Home() {
    }
 
    return (
-      <>
-         <div className='container'>
-            <div className='header'>Matematik Oyunu</div>
-            <div className='line'>{homeLine}</div>
-            <div className='main'>
-               <section>
-                  <div>Puan: {score}</div>
-                  <div><p>Çözülen Sayısı</p><p>: {questionsSolved}</p></div>
-                  <div>Yanlış Cevap: {wrongAnswers}</div>
-                  <div><p>Doğru Cevap</p><p>: {correctAnswers}</p></div>
-               </section>
-               <section>
-                  {operations.map((item, index) =>
-                     <Operation
-                        key={`operation-${index}`}
-                        selected={index === selectedIndex}
-                        label={item.label}
-                        onClick={() => onOperationSelect(item.type, index)}
-                     />
-                  )}
-               </section>
-            </div>
-            <div className='start' onClick={clickHandler}>
-               {footerCircle}
-               <p>Başla</p>
-            </div>
+      <div className='container'>
+         <div className='header'>Matematik Oyunu</div>
+         <div className='line'>{homeLine}</div>
+         <div className='main'>
+            <section>
+               <div>Puan: {score}</div>
+               <div><p>Çözülen Sayısı</p><p>: {questionsSolved}</p></div>
+               <div>Yanlıs Cevap: {wrongAnswers}</div>
+               <div><p>Dogru Cevap</p><p>: {correctAnswers}</p></div>
+            </section>
+            <section>
+               {operations.map((item, index) =>
+                  <Operation
+                     key={`operation-${index}`}
+                     selected={index === selectedIndex}
+                     label={item.label}
+                     onClick={() => onOperationSelect(item.type, index)}
+                  />
+               )}
+            </section>
          </div>
-         {/* {svgs.homePage} */}
-      </>
+         <div className='start' onClick={clickHandler}>
+            {footerCircle}
+            <p>Basla</p>
+         </div>
+      </div>
    );
 }

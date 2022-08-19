@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { createQuestions } from '../../assets/functions';
 import { useNavigate } from 'react-router-dom';
 import { STRINGS } from '../../assets/strings';
-import { useRound } from '../../context/use-round';
-import { useTotals } from '../../context/use-totals';
+import { useGame } from '../../context/use-game';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
 import Operation from '../operation';
@@ -21,8 +20,7 @@ const operations = [
 
 export default function Home() {
    const [operation, setOperation] = useState(null);
-   const { totals } = useTotals();
-   const { setRound } = useRound();
+   const { totals, setRound } = useGame();
    const navigate = useNavigate();
    const [selectedIndex, setSelectedIndex] = useState(null);
 

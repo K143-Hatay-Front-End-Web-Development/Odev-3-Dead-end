@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useAnswer } from '../../context/use-answer';
+import { useGame } from '../../context/use-game';
 import { shuffle } from '../../assets/functions';
 import Choice from '../choice';
 
 export default function Choices(props) {
    const { choices, isSelected, onClick } = props;
    const [indexes, setIndexes] = useState(shuffle());
-   const { check } = useAnswer();
+   const { check } = useGame();
 
    useEffect(() => {
       setIndexes(shuffle());

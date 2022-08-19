@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { STRINGS } from '../../assets/strings';
 import { useNavigate } from 'react-router-dom';
-import { useAnswer } from '../../context/use-answer';
-import { useRound } from '../../context/use-round';
-import { useResult } from '../../context/use-result';
-import { useTotals } from '../../context/use-totals';
+import { useGame } from '../../context/use-game';
 import Legend from '../legend';
 import Choices from '../choices';
 import * as svgs from '../../assets/svgs';
@@ -15,10 +12,7 @@ const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face
 const initialQuestion = { first: 7, operation: 'x', second: 8, points: 3, choices: [56, 49, 64] };
 
 export default function Round() {
-   const { answer, setAnswer, set } = useAnswer();
-   const { setTotals } = useTotals();
-   const { round, setRound } = useRound();
-   const { setResult } = useResult();
+   const { answer, setAnswer, set, setTotals, round, setRound, setResult } = useGame();
    const navigate = useNavigate();
 
    const { score, no, questions } = round;
@@ -82,17 +76,14 @@ export default function Round() {
    }, [round, score, setResult, answer, setAnswer, questions, questionCounter, setQuestionCounter, navigate]);
 
    return (
-      <>
-         <div className='schema'>
-            {svgs.schema}
-            {set(face)}
-            <Legend score={score} no={no} questionCounter={questionCounter} />
-            <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
-            <p className='question' style={{ fontSize: ['+', '-'].includes(operation) ? '110px' : '128px' }}>
-               {operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}
-            </p>
-         </div>
-         {/* {svgs.check} */}
-      </>
+      <div className='schema'>
+         {svgs.schema}
+         {set(face)}
+         <Legend score={score} no={no} questionCounter={questionCounter} />
+         <Choices choices={choices} isSelected={isSelected} onClick={onChoiceSelect} />
+         <p className='question' style={{ fontSize: ['+', '-'].includes(operation) ? '110px' : '128px' }}>
+            {operation === 'x' ? `${first} ${operation} ${second}` : `${first}${operation}${second}`}
+         </p>
+      </div>
    );
 }

@@ -9,7 +9,6 @@ import './styles.scss';
 
 const { CORRECT, INCORRECT } = STRINGS;
 const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
-const initialQuestion = { first: 7, operation: 'x', second: 8, points: 3, choices: [56, 49, 64] };
 
 export default function Round() {
    const { answer, setAnswer, set, setTotals, round, setRound, setResult } = useGame();
@@ -21,7 +20,7 @@ export default function Round() {
    const [questionCounter, setQuestionCounter] = useState(1);
    const [question, setQuestion] = useState(questions[questionCounter - 1]);
 
-   const { first, operation, second, points, choices } = question || initialQuestion;
+   const { first, operation, second, points, choices } = question;
 
    function onChoiceSelect(isCorrect, choice, index) {
       if (!answer) {

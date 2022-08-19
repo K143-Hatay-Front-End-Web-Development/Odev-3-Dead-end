@@ -1,5 +1,9 @@
 @import './styles/variables.scss';
 
+* {
+  margin: 0;
+}
+
 body {
   color: #fff;
   background-color: map-get($colors, bg);
@@ -8,11 +12,6 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body,
-p {
-  margin: 0;
 }
 
 code {

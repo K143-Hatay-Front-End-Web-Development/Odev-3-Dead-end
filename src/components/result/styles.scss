@@ -1,44 +1,60 @@
-// .container {
-//   font-family: 'Handlee', cursive;
-//   height: 100vh;
-//   justify-content: space-between;
-//   font-size: 32px;
-//   display: flex;
-//   flex-direction: row;
-//   margin: 0px 249px;
-//   color: #fff;
-//   cursor: pointer;
-//   /* overflow: hidden;  */
-// }
-
 .container-result {
-  font-size: 32px;
+  font-size: 64px;
   display: flex;
-}
+  justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1920px;
+  max-height: 1080px;
+  //   margin-top: 272px;
+  transform: scale(0.6);
 
-.container h2 {
-  color: #ff0000;
-  width: 222px;
-  height: 109px;
-  font-size: 82px;
-  margin: 100px 0px 0px 0px;
-}
+  h2 {
+    color: #ff0000;
+  }
 
-.section-right > ul {
-  margin-top: 0px;
-}
-.section-right ul li {
-  list-style: none;
-}
-.section-right ul li span {
-  margin-left: 25px;
-}
+  .section-left {
+    h2 {
+      font-size: 82px;
+    }
+  }
 
-.startGame {
-  margin: 106px 158px 0px 0px;
-}
+  .result-line {
+    font-size: 9px;
+  }
 
-.startGame > span {
-  position: absolute;
-  margin: 50px 150px;
+  .scores {
+    padding-top: 20px;
+
+    div {
+      margin: 40px 0px;
+    }
+  }
+
+  .svg-button {
+    position: relative;
+    padding-top: 64px;
+
+    span {
+      position: absolute;
+      top: 85px;
+      left: 98px;
+    }
+  }
+
+  .section-right {
+    h2 {
+      font-size: 64px;
+    }
+  }
+
+  .section-right > ul {
+    font-size: 52px;
+    margin-top: 54px;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
 }

@@ -3,7 +3,8 @@
 .schema {
   position: relative;
   width: 1920px;
-  height: 1080px;
+  height: 100vh;
+  transform: scale(0.6);
 
   svg * {
     fill: map-get($colors, svg);
